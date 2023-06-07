@@ -1,0 +1,13 @@
+[Unit]
+Description=Remote-PC
+After=network-online.target
+[Service]
+Type=simple
+User=sneppi
+WorkingDirectory=/home/sneppi/programm/Remote-PC/
+ExecStart=/home/sneppi/programm/Remote-PC/Remote-PC
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

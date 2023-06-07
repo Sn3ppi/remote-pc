@@ -1,2 +1,0 @@
-@echo off
-cmd /k "cd /d C:\Users\racer\AppData\Roaming\Sneppi-PC_bot\remote_pc\windows-modules\Scripts & activate & cd /d C:\Users\racer\AppData\Roaming\Sneppi-PC_bot\remote_pc & python "Remote-PC (TG).py""
