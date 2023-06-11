@@ -8,7 +8,7 @@ import asyncio
 from app.config.tmp import stop_sig
 from app.log import logger
 from app.register import get_tg_bot_token, reset_tg_bot_token, get_tg_admin_id, reset_tg_admin_id
-from database.tables.users import add_user, set_needed_level
+from database.tables.users import get_user_level, add_user, set_needed_level
 from models.tg.tools.notify_list import notify_users
 from models.tg.types import register_handlers
 
@@ -23,8 +23,10 @@ class TGBotBasic(Thread):
             admin_id = get_tg_admin_id()
             await dp.bot.get_chat(admin_id)
             register_handlers(dp=dp)
-            add_user(user_id=admin_id, account_type="tg")
-            set_needed_level(access_level=4, user_id=admin_id, account_type="tg")
+            user_level = get_user_level(admin_id, "tg")  
+            if user_level is None: 
+                add_user(user_id=admin_id, account_type="tg")
+                set_needed_level(access_level=4, user_id=admin_id, account_type="tg")
             await notify_users(dp.bot, True)
             logger.info("Бот запущен!")
         except (ChatNotFound, ChatIdIsEmpty):
