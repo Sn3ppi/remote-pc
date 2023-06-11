@@ -1,7 +1,7 @@
 from aiogram import Dispatcher
 
 from models.tg.types.states.none.buttons import *
-from models.tg.types.states.none.messages import menu_command
+from models.tg.types.states.none.messages import *
 
 def none_handlers(dp: Dispatcher) -> None:
     dp.register_callback_query_handler(menu_key, state=None, regexp="menu.pg_[0-9]+")
@@ -30,3 +30,4 @@ def none_handlers(dp: Dispatcher) -> None:
     dp.register_callback_query_handler(menu_etc_screen_key, state=None, regexp="menu.etc.screen.pg_[0-9]+")
     dp.register_callback_query_handler(menu_about, state=None, regexp="menu.about.pg_[0-9]+")
     dp.register_message_handler(menu_command, state=None, commands=['start', 'menu'])
+    dp.register_message_handler(user_data, state=None, commands=['id'])

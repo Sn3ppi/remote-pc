@@ -16,6 +16,7 @@ def create_table() -> None:
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
+            date DATETIME DEFAULT CURRENT_TIMESTAMP,
             account_type TEXT,
             access_level INTEGER DEFAULT 1,
             last_chat_id TEXT,

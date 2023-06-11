@@ -37,4 +37,4 @@ class Display:
         self._header = " > ".join([translator[key] for key in inner_name.split(sep=separator)])
         
     def set_description(self, text: str) -> None:
-        self._description = text  
+        self._description = text

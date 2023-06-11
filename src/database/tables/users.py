@@ -166,3 +166,22 @@ def check_last_message_id(user_id: str, account_type: str, last_chat_id: int, la
         fetchall=True
     )
     return None if response is None else response[0][0]
+
+
+def get_user_data(user_id: str, account_type: str) -> list:
+    '''Получает полную информацию о пользователе.'''
+    response = sql_request(
+    """
+    SELECT
+        date, id, access_level
+    FROM users WHERE
+        user_id = :user_id AND
+        account_type = :account_type
+    """, 
+        {
+            'user_id': user_id,
+            'account_type': account_type
+        },
+        fetchall=True
+    )
+    return [] if response is None or not response else response 
