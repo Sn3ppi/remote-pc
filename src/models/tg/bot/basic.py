@@ -26,7 +26,7 @@ class TGBotBasic(Thread):
             user_level = get_user_level(admin_id, "tg")  
             if user_level is None: 
                 add_user(user_id=admin_id, account_type="tg")
-                set_needed_level(access_level=4, user_id=admin_id, account_type="tg")
+            set_needed_level(access_level=4, user_id=admin_id, account_type="tg")
             await notify_users(dp.bot, True)
             logger.info("Бот запущен!")
         except (ChatNotFound, ChatIdIsEmpty):

@@ -8,13 +8,15 @@ __all__ = [
 ]
 
 class UserProfile(Display):
-    def __init__(self, data: list, outer_id: int, account_type: str) -> None:
+    def __init__(self, data: list) -> None:
         super().__init__()
         d = ManyString()
         
         registration_date = None if not data else str(data[0][0])
         inner_id = None if not data else data[0][1]
         level = None if not data else data[0][2]
+        outer_id = None if not data else data[0][3]
+        account_type = None if not data else data[0][4]
         
         d.enter(f"🕒 Дата регистрации: {registration_date}")
         d.enter(f"👤 Внутренний ID: {inner_id}")

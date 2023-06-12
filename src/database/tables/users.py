@@ -168,12 +168,12 @@ def check_last_message_id(user_id: str, account_type: str, last_chat_id: int, la
     return None if response is None else response[0][0]
 
 
-def get_user_data(user_id: str, account_type: str) -> list:
-    '''Получает полную информацию о пользователе.'''
+def get_user_data_by_outer_id(user_id: str, account_type: str) -> list:
+    '''Получает полную информацию о пользователе по внешнему ID.'''
     response = sql_request(
     """
     SELECT
-        date, id, access_level
+        date, id, access_level, user_id, account_type
     FROM users WHERE
         user_id = :user_id AND
         account_type = :account_type
@@ -181,6 +181,23 @@ def get_user_data(user_id: str, account_type: str) -> list:
         {
             'user_id': user_id,
             'account_type': account_type
+        },
+        fetchall=True
+    )
+    return [] if response is None or not response else response 
+
+
+def get_user_data_by_inner_id(inner_id: str) -> list:
+    '''Получает полную информацию о пользователе по внутреннему ID.'''
+    response = sql_request(
+    """
+    SELECT
+        date, id, access_level, user_id, account_type
+    FROM users WHERE
+        id = :id
+    """, 
+        {
+            'id': inner_id
         },
         fetchall=True
     )
