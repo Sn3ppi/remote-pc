@@ -3,9 +3,10 @@ Description=Remote-PC
 After=network-online.target
 [Service]
 Type=simple
-User=sneppi
-WorkingDirectory=/home/sneppi/programm/Remote-PC/
-ExecStart=/home/sneppi/programm/Remote-PC/Remote-PC
+User=leonid
+Environment="DISPLAY=:0"
+WorkingDirectory=/home/leonid/programm/Remote-PC/
+ExecStart=/home/leonid/programm/Remote-PC/Remote-PC
 KillMode=process
 Restart=always
 
